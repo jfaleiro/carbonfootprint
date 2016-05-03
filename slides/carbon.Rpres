@@ -1,0 +1,41 @@
+Browsing Carbon Footprint Related Features of Mid-70's Automobiles
+====
+author: J Faleiro
+date: May 5 2014
+autosize: true
+
+The Data
+===
+
+- This small application demonstrates ad hoc data investigation in features related to the carbon footprint of mid-70's automobiles
+- This data was extracted from the 1974 issue of Motor Trend, an US automobile magazine. 
+- The data comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models). 
+
+Summary
+===
+```{r result='asis'}
+data(mtcars)
+knitr::kable(head(mtcars))
+```
+
+Data Analysis 
+===
+
+- Select features by moving the `Predictor` and the `Outcome` drop bown boxes 
+- The dashboard will show a linear interpolation between the features selected. 
+- The shaded area represents the **95% confidence interval** of the linear prediction.
+- You can additionally select a `Clustered` featured in the third drop-down box to add colors to points as a way to help visualize clusters.
+
+Sample Visualization & Data Insights
+====
+
+- The outcome `mpg` is negativelly correlated to all regressors
+- All regressors are positivelly correlated amongst themselves
+
+***
+
+```{r echo=FALSE}
+library(ggplot2)
+qplot(hp, mpg, colour=cyl, data=mtcars) +
+    geom_smooth(method='lm', formula=y~x)
+```
